@@ -20,7 +20,6 @@ use Noodlehaus\Exception\EmptyDirectoryException;
 class App
 {
     /* Properties */
-
     /**
      * The bootstrapper
      * @var Bootstrap
@@ -85,7 +84,7 @@ class App
             $GLOBALS['CONFIG_PATH'] = $configFilePath;
             Config::getInstance();
         } catch (EmptyDirectoryException $e) {
-            echo 'Error while loading config file: \r\n' . $e->getTraceAsString();
+            print('Error while loading config file: \r\n' . $e->getTraceAsString());
         }
     }
 
@@ -94,7 +93,6 @@ class App
      */
     private function createHookManager()
     {
-        $GLOBALS['hook'] = array();
         HookManager::getInstance();
         //$this->logger->debug(__FILE__, "Created HookManager.");
     }

@@ -48,8 +48,6 @@ class HookManager
 
     private function __clone(){ }
 
-    private function __wakeup() { }
-
     /**
      * Save hook function in $this->hooks
      * @param string $channel
@@ -81,9 +79,8 @@ class HookManager
 
                 if ($vars !== null) {
                     return call_user_func($func, $vars);
-                } else {
-                    return call_user_func($func);
                 }
+                return call_user_func($func);
 
             }
 
