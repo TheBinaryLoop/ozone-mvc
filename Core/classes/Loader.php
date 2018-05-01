@@ -39,20 +39,18 @@ class Loader
             }
             if($browserHandled){
                 self::loadBrowserHandlebarsView($filename, $viewVars);
+                return;
             }
-            else
-            {
-                self::loadHandlebarsView($filename, $viewVars);
-            }
+            self::loadHandlebarsView($filename, $viewVars);
+            return;
         }
         elseif ($dwooView)
         {
             self::loadDwooView($filename, $viewVars);
+            return;
         }
-        else
-        {
-            self::loadNativeView($filename, $viewVars);
-        }
+        self::loadNativeView($filename, $viewVars);
+        return;
     }
 
     static function loadNativeView($viewFile, $viewVars = array())
@@ -60,9 +58,11 @@ class Loader
         $viewFile = self::checkFileExtension($viewFile);
         extract($viewVars);
         if (file_exists($viewFile))
+        {
             require_once $viewFile;
-        else
-            die("Trying to load non existing View");
+            return;
+        }
+        die("Trying to load non existing View"); //TODO: Change to exception/error
     }
 
     static function loadHandlebarsView($viewFile, $viewVars = array())
@@ -71,9 +71,9 @@ class Loader
         {
             $engine = new Handlebars();
             echo $engine->render(file_get_contents($viewFile), $viewVars);
+            return;
         }
-        else
-            die("Trying to load non existing View");
+        die("Trying to load non existing View");  //TODO: Change to exception/error
     }
 
     static function loadBrowserHandlebarsView($viewFile, $viewVars = array())
@@ -82,9 +82,9 @@ class Loader
             echo "<!DOCTYPE html><html><head><title>Loading</title></head><body><h1>Loading...</h1><script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>"
                 . "<script id='pageTemplate' type='text/x-handlebars-template'>".file_get_contents($viewFile)."</script><script>$(document).ready(function(){"
                 . "var source = $('#pageTemplate').html(); var template = Handlebars.compile(source); var context = ".  json_encode($viewVars)."; $('html').html(template(context)); });</script></body></html>";
-        }else{
-            die("Trying to Load Non Existing Handlebar");
+            return;
         }
+        die("Trying to Load Non Existing Handlebar"); //TODO: Change to exception/error
     }
 
     static function loadDwooView($viewFile, $viewVars = array())
