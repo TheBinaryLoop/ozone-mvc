@@ -1,4 +1,5 @@
 language: php
+
 php:
   - '7.1.0'
   - '7.1.16'
@@ -8,5 +9,12 @@ php:
   - '7.2.3'
   - '7.2.4'
   - nightly
+
 install:
   - composer install
+
+script:
+  - php vendor/bin/phpunit --coverage-clover build/coverage/xml
+
+after_script:
+  - php vendor/bin/codacycoverage clover build/coverage/xml
