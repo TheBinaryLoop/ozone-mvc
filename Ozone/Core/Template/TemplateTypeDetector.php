@@ -29,7 +29,7 @@ class TemplateTypeDetector
      * Detect the type of view from the view file path.
      * @param string $viewFilePath
      * @return int The type of the template
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException|\InvalidArgumentException
      */
     public static function detect(string $viewFilePath)
     {

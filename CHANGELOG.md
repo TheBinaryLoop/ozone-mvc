@@ -20,6 +20,8 @@ All notable changes to the `Ozone Framework` will be documented in this file
 - Added `MethodNotFoundException.php`
 - Added `MisconfigurationException.php`
 - Added `j4mie/paris` and `j4mie/idiorm` for easier database access
+- Added PHPUnitTests for `Bootstrap.php`
+
 
 ### Changed
 - Splitted the `Loader` into Template Engines

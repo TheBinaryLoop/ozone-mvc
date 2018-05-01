@@ -63,22 +63,21 @@ class URLHelper
     public static function request($key)
     {
         //TODO: Check if it works
-        return self::get($key) ? self::get($key) : self::post($key) ? self::post($key) : false;
+        //return self::get($key) ? self::get($key) : self::post($key) ? self::post($key) : false;
 
-        /*
-         * if(self::get($key))
-         * {
-         *     return self::get($key);
-         * }
-         * elseif(self::post($key))
-         * {
-         *     return self::post($key);
-         * }
-         * else
-         * {
-         *     return false;
-         * }
-         */
+        if(self::get($key))
+        {
+            return self::get($key);
+        }
+        elseif(self::post($key))
+        {
+            return self::post($key);
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
     /**
