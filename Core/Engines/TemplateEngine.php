@@ -9,6 +9,8 @@
 namespace core\engines;
 
 
+use Ozone\Core\Config;
+
 abstract class TemplateEngine implements ITemplateEngine
 {
     /* Variables */
@@ -27,7 +29,7 @@ abstract class TemplateEngine implements ITemplateEngine
         $viewFilePath = str_replace("::", "/", $viewFilePath);
         // Replace `>` with `/`
         $viewFilePath = str_replace(">", "/", $viewFilePath);
-        $viewFilePath = $GLOBALS["Config"]["path"]["app"]."views/{$viewFilePath}";
+        $viewFilePath = Config::getInstance()->get('path.app')."views/{$viewFilePath}";
 
         // Check supported file extensions
         foreach ($this->supportedFileExtensions as $extension) {

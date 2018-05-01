@@ -17,50 +17,67 @@ namespace Ozone\Core;
  */
 class HookManager
 {
+    private static $instance;
+
+    private $hooks;
+
     /**
-     * Check if $GLOBALS['hook'] isset and is array
+     * Check if $this->hooks isset and is array
      */
-    public function __construct()
+    private function __construct()
     {
-        if ( !isset( $GLOBALS['hook'] ))
+        $this->hooks = array();
+        /*if ( !isset( $GLOBALS['hook'] ))
         {
             throw new \UnexpectedValueException('$GLOBALS[\'hook\'] can\'t be null');
         }
-        if ( !is_array( $GLOBALS['hook'] ) )
+        if ( !is_array( $this->hooks ) )
         {
             throw new \TypeError('$GLOBALS[\'hook\'] must be of type array');
-        }
+        }*/
         return;
     }
 
+    public static function getInstance()
+    {
+        if (self::$instance === null) {
+            self::$instance = new HookManager();
+        }
+        return self::$instance;
+    }
+
+    private function __clone(){ }
+
+    private function __wakeup() { }
+
     /**
-     * Save hook function in $GLOBALS['hook']
+     * Save hook function in $this->hooks
      * @param string $channel
      * @param callable $func
      */
     public function watch($channel, callable $func){
 
-        if( !isset( $GLOBALS['hook'][$channel] ) ){
+        if( !isset( $this->hooks[$channel] ) ){
 
-            $GLOBALS['hook'][$channel] = array();
+            $this->hooks[$channel] = array();
 
         }
 
-        array_push($GLOBALS['hook'][$channel], $func);
+        array_push($this->hooks[$channel], $func);
 
     }
 
     /**
-     * Loop through $GLOBALS['hook'] and call hook functions
+     * Loop through $this->hooks and call hook functions
      * @param string $channel
      * @param array $vars
      * @return mixed
      */
     public function subscribe($channel, $vars = array()){
 
-        if( isset( $GLOBALS['hook'][$channel] ) ){
+        if( isset( $this->hooks[$channel] ) ){
 
-            foreach( $GLOBALS['hook'][$channel] as $func ){
+            foreach( $this->hooks[$channel] as $func ){
 
                 if ($vars !== null) {
                     return call_user_func($func, $vars);

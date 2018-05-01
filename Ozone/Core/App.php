@@ -8,7 +8,6 @@
 
 namespace Ozone\Core;
 
-use Noodlehaus\Config;
 use Noodlehaus\Exception\EmptyDirectoryException;
 
 /**
@@ -83,19 +82,20 @@ class App
         if ($configFilePath == "")
             throw new \InvalidArgumentException('$configFilePath can\'t be null or empty!');
         try {
-            $GLOBALS['Config'] = new Config($configFilePath);
+            $GLOBALS['CONFIG_PATH'] = $configFilePath;
+            Config::getInstance();
         } catch (EmptyDirectoryException $e) {
             echo 'Error while loading config file: \r\n' . $e->getTraceAsString();
         }
     }
 
     /**
-     *  Creates a new instance of the HookManager class and makes it global.
+     *  Initialize the HookManager singleton
      */
     private function createHookManager()
     {
         $GLOBALS['hook'] = array();
-        $GLOBALS['HookManager'] = new HookManager();
+        HookManager::getInstance();
         //$this->logger->debug(__FILE__, "Created HookManager.");
     }
 

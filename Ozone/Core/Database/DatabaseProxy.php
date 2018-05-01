@@ -9,6 +9,7 @@
 namespace Ozone\Core\Database;
 
 
+use Ozone\Core\Config;
 use Ozone\Core\Database\Engine\ElasticsearchEngine;
 use Ozone\Core\Database\Engine\Engine;
 use Ozone\Core\Database\Engine\FirebirdEngine;
@@ -39,79 +40,79 @@ class DatabaseProxy extends Engine
      */
     public function __construct()
     {
-        switch ($GLOBALS['Config']['database']['type']) {
+        switch (Config::getInstance()->get('database.type')) {
             case 'ozone.db.dummy':
                 {
                     // TODO: Create Dummy Engine
-                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine {$GLOBALS['Config']['database']['type']}");
+                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine ".Config::getInstance()->get('database.type'));
                     break;
                 }
             case 'ozone.db.mysql':
                 {
                     // TODO: Create MySQL Engine
                     $this->engine = new MySQLEngine();
-                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine {$GLOBALS['Config']['database']['type']}");
+                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine ".Config::getInstance()->get('database.type'));
                     break;
                 }
             case 'ozone.db.postgresql':
                 {
                     // TODO: Create PostgreSQL Engine
                     $this->engine = new PostgreSQLEngine();
-                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine {$GLOBALS['Config']['database']['type']}");
+                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine ".Config::getInstance()->get('database.type'));
                     break;
                 }
             case 'ozone.db.sqlite':
                 {
                     // TODO: Create SQLite Engine
                     $this->engine = new SQLiteEngine();
-                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine {$GLOBALS['Config']['database']['type']}");
+                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine ".Config::getInstance()->get('database.type'));
                     break;
                 }
             case 'ozone.db.mssql':
                 {
                     // TODO: Create MSSQL Engine
                     $this->engine = new MSSQLEngine();
-                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine {$GLOBALS['Config']['database']['type']}");
+                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine ".Config::getInstance()->get('database.type'));
                     break;
                 }
             case 'ozone.db.oracle':
                 {
                     // TODO: Create Oracle Engine
                     $this->engine = new OracleEngine();
-                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine {$GLOBALS['Config']['database']['type']}");
+                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine ".Config::getInstance()->get('database.type'));
                     break;
                 }
             case 'ozone.db.firebird':
                 {
                     // TODO: Create Firebird Engine
                     $this->engine = new FirebirdEngine();
-                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine {$GLOBALS['Config']['database']['type']}");
+                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine ".Config::getInstance()->get('database.type'));
                     break;
                 }
             case 'ozone.db.simpledb':
                 {
                     // TODO: Create SimpleDB Engine
                     $this->engine = new SimpleDBEngine();
-                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine {$GLOBALS['Config']['database']['type']}");
+                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine ".Config::getInstance()->get('database.type'));
                     break;
                 }
             case 'ozone.db.elasticsearch':
                 {
                     // TODO: Create Elasticsearch Engine
                     $this->engine = new ElasticsearchEngine();
-                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine {$GLOBALS['Config']['database']['type']}");
+                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine ".Config::getInstance()->get('database.type'));
                     break;
                 }
             case 'ozone.db.mongodb':
                 {
                     // TODO: Create MongoDB Engine
                     $this->engine = new MongoDBEngine();
-                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine {$GLOBALS['Config']['database']['type']}");
+                    $GLOBALS['Logger']->debug(__FILE__, "Created Database Engine ".Config::getInstance()->get('database.type'));
                     break;
                 }
             default:
                 {
-                    echo 'Could not create Database Engine ' . $GLOBALS['Config']['database']['type'];
+                    echo 'Could not create Database Engine ' . Config::getInstance()->get('database.type');
                     break;
                 }
         }

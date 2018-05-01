@@ -7,6 +7,7 @@
  */
 
 namespace Ozone\Core\Helpers;
+use Ozone\Core\Config;
 
 
 /**
@@ -28,7 +29,7 @@ class URLHelper
             return false;
         $uri = explode('?', $_SERVER['REQUEST_URI']);
         $parts = explode('/', $uri[0]);
-        if($parts[1] == $GLOBALS["Config"]["path"]["index"])
+        if($parts[1] == Config::getInstance()->get('path.index'))
         {
             $number++;
         }
@@ -87,8 +88,8 @@ class URLHelper
     public static function getBaseURL()
     {
         return (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443
-            ? "https://".$GLOBALS['Config']['domain'].'/'
-            : "http://".$GLOBALS['Config']['domain'].'/';
+            ? "https://".Config::getInstance()->get('domain').'/'
+            : "http://".Config::getInstance()->get('domain').'/';
     }
 
     /**
@@ -101,7 +102,7 @@ class URLHelper
     {
         if(strpos($url, "//") === false)
         {
-            $prefix = "//".$GLOBALS["Config"]["domain"];
+            $prefix = "//".Config::getInstance()->get('domain');
         }
         else
         {
@@ -125,7 +126,7 @@ class URLHelper
     {
         if(strpos($url, "//") === false)
         {
-            $prefix = "//".$GLOBALS["Config"]["domain"];
+            $prefix = "//".Config::getInstance()->get('domain');
         }
         else
         {

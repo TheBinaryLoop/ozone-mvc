@@ -8,6 +8,8 @@
 
 namespace Ozone\App\Controllers;
 
+use Ozone\Core\HookManager;
+
 
 /**
  * Class AppController
@@ -43,7 +45,7 @@ abstract class AppController implements IAppController
      */
     public function executeAction()
     {
-        $result = $GLOBALS['HookManager']->subscribe("preParseRequest", $this->request);
+        $result = HookManager::getInstance()->subscribe("preParseRequest", $this->request);
         if (!is_null($result) && is_array($result))
             $this->request = $result;
         return $this->{$this->action}();

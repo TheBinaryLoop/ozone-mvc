@@ -14,44 +14,13 @@ use PHPUnit\Framework\TestCase;
 class HookManagerTest extends TestCase
 {
 
-    public function testWatch()
+    public function testWatchAndSubscribe()
     {
-        $GLOBALS['hook'] = array();
-        $manager = new HookManager();
-        $manager->watch('testChannel', function () {});
-        $this->assertNotEmpty($GLOBALS['hook']);
-        $this->assertEquals(function () {}, $GLOBALS['hook']['testChannel'][0]);
-        unset($GLOBALS['hook']);
-    }
-
-    public function testSubscribe()
-    {
-        $GLOBALS['hook'] = array();
-        $manager = new HookManager();
-        $manager->watch('testChannel', function ($data) {
+        HookManager::getInstance()->watch('testChannel', function ($data) {
             return str_replace('not ', '', $data);
         });
         $testData = 'This hook has not worked!';
-        $this->assertEquals('This hook has worked!', $manager->subscribe('testChannel', $testData));
+        $this->assertEquals('This hook has worked!', HookManager::getInstance()->subscribe('testChannel', $testData));
     }
 
-    /**
-     * @expectedException UnexpectedValueException
-     * @expectedExceptionMessage $GLOBALS['hook'] can't be null
-     */
-    public function testConstructWithoutGlobalHookArray()
-    {
-        unset($GLOBALS['hook']);
-        new HookManager();
-    }
-
-    /**
-     * @expectedException TypeError
-     * @expectedExceptionMessage $GLOBALS['hook'] must be of type array
-     */
-    public function testConstructWithGlobalHookArrayWrongType()
-    {
-        $GLOBALS['hook'] = "Test";
-        new HookManager();
-    }
 }

@@ -58,21 +58,21 @@ class Bootstrap
         $this->request['controller'] = ucfirst(URLHelper::part(1));
         $this->request['action'] = URLHelper::part(2);
 
-        $result = $GLOBALS['HookManager']->subscribe('preParseRequest', $this->request);
+        $result = HookManager::getInstance()->subscribe('preParseRequest', $this->request);
         if (!is_null($result) && is_array($result))
             $this->request = $result;
 
         if ($this->request['controller'] == '')
-            $this->controller = 'Ozone\\App\\Controllers\\'.$GLOBALS['Config']['defaults']['controller'];
+            $this->controller = 'Ozone\\App\\Controllers\\'.Config::getInstance()->get('defaults.controller');
         else
             $this->controller = 'Ozone\\App\\Controllers\\'.$this->request['controller'];
 
         if ($this->request['action'] == '')
-            $this->action = $GLOBALS['Config']['defaults']['action'];
+            $this->action = Config::getInstance()->get('defaults.action');
         else
             $this->action = $this->request['action'];
 
-        $result = $GLOBALS['HookManager']->subscribe('postParseRequest', $this->request);
+        $result = HookManager::getInstance()->subscribe('postParseRequest', $this->request);
         if (!is_null($result) && is_array($result))
             $this->request = $result;
     }
@@ -83,7 +83,7 @@ class Bootstrap
      */
     public function createController()
     {
-        $result = $GLOBALS['HookManager']->subscribe('preCreateController', $this->controller);
+        $result = HookManager::getInstance()->subscribe('preCreateController', $this->controller);
         if (!is_null($result))
             $this->controller = $result;
 

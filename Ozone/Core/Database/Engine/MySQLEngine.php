@@ -7,6 +7,7 @@
  */
 
 namespace Ozone\Core\Database\Engine;
+use Ozone\Core\Config;
 use \PDO;
 
 
@@ -30,7 +31,7 @@ class MySQLEngine extends Engine
     {
         try
         {
-            $this->connection = new PDO("mysql:host={$GLOBALS['Config']['database']['host']};dbname={$GLOBALS['Config']['database']['name']}", $GLOBALS['Config']['database']['username'], $GLOBALS['Config']['database']['password']);
+            $this->connection = new PDO("mysql:host=".Config::getInstance()->get('database.host').";dbname=".Config::getInstance()->get('database.name'), Config::getInstance()->get('database.username'), Config::getInstance()->get('database.password'));
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch (\PDOException $e)

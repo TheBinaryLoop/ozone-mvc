@@ -10,6 +10,8 @@
 namespace core\classes;
 
 use Handlebars\Handlebars;
+use Ozone\Core\Config;
+use Ozone\Core\HookManager;
 
 class Loader
 {
@@ -17,23 +19,23 @@ class Loader
     {
         $viewFile = str_replace("::", "/", $viewFile);
         $viewFile = str_replace(">", "/", $viewFile);
-        $filename = $GLOBALS["Config"]["path"]["base"].$GLOBALS["Config"]["path"]["app"]."Views/{$viewFile}";
+        $filename = Config::getInstance()->get('path.base').Config::getInstance()->get('path.app')."Views/{$viewFile}";
 
         /* Hook: onLoadView */
-        $result = $GLOBALS['HookManager']->subscribe("onLoadView", $viewFile);
+        $result = HookManager::getInstance()->subscribe("onLoadView", $viewFile);
         if (!is_null($result) && $result === false)
             return;
 
         if (is_null($handlebarView)) {
-            $handlebarView = $GLOBALS["Config"]["engines"]["handlebars_enabled"];
+            $handlebarView = Config::getInstance()->get('engines.handlebars_enabled');
         }
         if (is_null($dwooView))
         {
-            $dwooView = $GLOBALS["Config"]["engines"]["dwoo_enabled"];
+            $dwooView = Config::getInstance()->get('engines.dwoo_enabled');
         }
         if ($handlebarView) {
             if(is_null($browserHandled)){
-                $browserHandled = $GLOBALS["Config"]["engines"]["handlebars_browser_handled"];
+                $browserHandled = Config::getInstance()->get('engines.handlebars_browser_handled');
             }
             if($browserHandled){
                 self::loadBrowserHandlebarsView($filename, $viewVars);

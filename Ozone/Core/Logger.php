@@ -17,6 +17,8 @@ namespace Ozone\Core;
  */
 class Logger
 {
+    private static $instance;
+
     /**
      * The logfile.
      * @var string

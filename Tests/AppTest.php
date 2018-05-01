@@ -28,8 +28,5 @@ class AppTest extends TestCase
     {
         $app = new App();
         $this->assertTrue(isset($GLOBALS['Logger']));
-        $this->assertEmpty($GLOBALS['hook']);
-        $this->assertTrue(isset($GLOBALS['HookManager']));
-        $this->assertTrue(isset($GLOBALS['Config']));
     }
 }
