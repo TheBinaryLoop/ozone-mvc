@@ -16,31 +16,31 @@ class LoggerTest extends TestCase
     public function testError()
     {
         $logger = new Logger(true, __DIR__ . '\\..\\logs\\LoggerTest.log');
-        $this->assertEquals(79, $logger->error(__FILE__, "TestCase Error!"));
+        $this->assertEquals(38, $logger->error(__FILE__, "TestCase Error!"));
     }
 
     public function testWarning()
     {
         $logger = new Logger(true, __DIR__ . '\\..\\logs\\LoggerTest.log');
-        $this->assertEquals(81, $logger->error(__FILE__, "TestCase Warning!"));
+        $this->assertEquals(40, $logger->error(__FILE__, "TestCase Warning!"));
     }
 
     public function testFatal()
     {
         $logger = new Logger(true, __DIR__ . '\\..\\logs\\LoggerTest.log');
-        $this->assertEquals(79, $logger->error(__FILE__, "TestCase Fatal!"));
+        $this->assertEquals(38, $logger->error(__FILE__, "TestCase Fatal!"));
     }
 
     public function testInfo()
     {
         $logger = new Logger(true, __DIR__ . '\\..\\logs\\LoggerTest.log');
-        $this->assertEquals(78, $logger->error(__FILE__, "TestCase Info!"));
+        $this->assertEquals(37, $logger->error(__FILE__, "TestCase Info!"));
     }
 
     public function testDebug()
     {
         $logger = new Logger(true, __DIR__ . '\\..\\logs\\LoggerTest.log');
-        $this->assertEquals(79, $logger->error(__FILE__, "TestCase Debug!"));
+        $this->assertEquals(38, $logger->error(__FILE__, "TestCase Debug!"));
     }
 
     public function __destruct()

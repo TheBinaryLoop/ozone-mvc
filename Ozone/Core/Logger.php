@@ -110,7 +110,7 @@ class Logger
     private function writeLogLine(string $file, string $logLevel, string $message)
     {
         if ($this->isTest)
-            $logLine = "[{$file}][{$logLevel}] {$message}".PHP_EOL;
+            $logLine = "[TEST_RUNNER][{$logLevel}] {$message}".PHP_EOL;
         else
             $logLine = "[" . date("Y-m-d h:m:s") . "][{$file}][{$logLevel}] {$message}".PHP_EOL;
         return file_put_contents($this->logFile, $logLine, FILE_APPEND);
