@@ -11,3 +11,7 @@ composer.lock
 /caches/
 /.idea/
 /config/
+/docs/
+/logs/
+
+# Only temp solution

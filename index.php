@@ -7,11 +7,17 @@
  */
 error_reporting(E_ALL);
 
-require_once __DIR__ . '/core/autoload.php';
+/* Loading the Constants */
+require_once __DIR__ . '/Ozone/Core/Constants.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
-$app = new \core\Ozone();
-$app->start();
+$app = new Ozone\Core\App();
+$app->bootstrap();
+
+//\Ozone\Core\Template\TemplateTypeDetector::detect("F:\\Programing\\PHP\\7.0\\ozone-mvc\\Ozone\\App\\Views\\Home\\index.php");
+
+//$engine = new Ozone\Core\Engines\MarkdownEngine();
+//$engine->render('home::CHANGELOG', array());
 
 /* Available Hooks */
 // onLoadView
