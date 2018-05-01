@@ -14,4 +14,7 @@ composer.lock
 /docs/
 /logs/
 
+# Utils
+doc.bat
+
 # Only temp solution

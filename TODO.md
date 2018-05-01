@@ -5,4 +5,4 @@
 - [ ] Abstract Template handling
 - [ ] Restructuring file/folder system
 - [ ] Implement a Plugin System
-
+- [ ] Improve the routing system
