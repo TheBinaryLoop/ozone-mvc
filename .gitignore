@@ -13,6 +13,7 @@ composer.lock
 /config/
 /docs/
 /logs/
+/build/
 
 # Utils
 doc.bat

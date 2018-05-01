@@ -5,4 +5,18 @@
             <directory>Tests</directory>
         </testsuite>
     </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>./</directory>
+            <exclude>
+                <directory>./assets</directory>
+                <directory>./docs</directory>
+                <directory>./logs</directory>
+                <directory>./vendor</directory>
+                <directory>./Test</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
 </phpunit>
