@@ -7,8 +7,25 @@
  */
 error_reporting(E_ALL);
 
-/* Loading the Constants */
+/* Start collecting system information */
+/* End collecting system information */
+
+/* Start define useful constants */
+// Utilities
+define('DS', DIRECTORY_SEPARATOR);
+define('ROOT', __DIR__ . DS);
+// Program specific
 require_once __DIR__ . '/Ozone/Core/Constants.php';
+/* End define useful constants */
+
+
+die($_SERVER['HTTP_HOST']);
+$_autoloader = NATIVE_AUTOLOADER;
+if (is_dir(ROOT . 'vendor') && file_exists(ROOT.'vendor'.DS.'autoload.php')) {
+    $_autoloader = COMPOSER_AUTOLOADER;
+}
+
+// Try using composer to autoload file.
 require_once __DIR__ . '/vendor/autoload.php';
 
 $app = new Ozone\Core\App();

@@ -6,29 +6,13 @@
  * Time: 13:33
  */
 
-/* TemplateEngine */
-/**
- * @todo Implement
- */
-define('TEMPLATE_NONE', 0);
-/**
- * @todo Implement
- */
-define('TEMPLATE_PLAIN', 1);
-/**
- * @todo Implement
- */
-define('TEMPLATE_HANDLEBARS_SERVER', 2);
-/**
- * @todo Implement
- */
-define('TEMPLATE_HANDLEBARS_BROWSER', 3);
-/**
- * @todo Implement
- */
-define('TEMPLATE_MARKDOWN', 4);
-/**
- *
- * @todo Implement
- */
-define('TEMPLATE_DWOO', 5);
+/* Start define useful constants */
+// Framework info
+define('FRAMEWORK_NAME', 'Ozone');
+define('FRAMEWORK_VERSION', '0.0.4');
+define('FRAMEWORK_AUTHOR', 'Lukas Eßmann');
+define('FRAMEWORK_LICENSE', 'Apache2.0');
+// Autoloader
+define('NATIVE_AUTOLOADER', 1);
+define('COMPOSER_AUTOLOADER', 2);
+/* End define useful constants */
